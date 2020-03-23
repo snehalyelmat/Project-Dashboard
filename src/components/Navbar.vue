@@ -19,9 +19,14 @@
       </v-btn>
     </v-toolbar>
 
-    <v-navigation-drawer v-model="drawer" app class="blue lighten-1">
+    <v-navigation-drawer temporary app v-model="drawer" class="blue lighten-1">
       <v-list>
-        <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
+        <v-list-item
+          v-for="link in links"
+          :key="link.text"
+          router
+          :to="link.route"
+        >
           <v-list-item-icon
             ><v-icon class="white--text">{{ link.icon }}</v-icon>
           </v-list-item-icon>
@@ -41,9 +46,9 @@ export default {
     return {
       drawer: false,
       links: [
-        {icon: 'mdi-view-dashboard', text: 'Dashboard', route: '/'},
-        {icon: 'mdi-folder-open', text: 'My Projects', route: '/projects'},
-        {icon: 'mdi-account-multiple', text: 'Team', route: '/team'}
+        { icon: "mdi-view-dashboard", text: "Dashboard", route: "/" },
+        { icon: "mdi-folder-open", text: "My Projects", route: "/projects" },
+        { icon: "mdi-account-multiple", text: "Team", route: "/team" }
       ]
     };
   }
