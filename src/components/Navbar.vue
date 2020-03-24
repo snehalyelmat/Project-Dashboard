@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <v-toolbar flat app class="grey lighten-3">
+    <v-app-bar flat app class="grey lighten-3">
       <v-app-bar-nav-icon
         class="grey--text"
         @click="drawer = !drawer"
@@ -13,11 +13,11 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn flat color="grey lighten-3">
+      <v-btn text color="grey">
         <span>Sign Out</span>
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
-    </v-toolbar>
+    </v-app-bar>
 
     <v-navigation-drawer temporary app v-model="drawer" class="blue lighten-1">
       <v-layout column align-center>
