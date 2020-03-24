@@ -20,6 +20,17 @@
     </v-toolbar>
 
     <v-navigation-drawer temporary app v-model="drawer" class="blue lighten-1">
+      <v-layout column align-center>
+        <v-flex class="mt-5">
+          <v-avatar size="100">
+            <img src="/profile.jpg" />
+          </v-avatar>
+        </v-flex>
+        <v-flex>
+          <p class="white--text headline mt-5">ONYX BLACK</p>
+        </v-flex>
+      </v-layout>
+
       <v-list>
         <v-list-item
           v-for="link in links"

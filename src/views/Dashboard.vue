@@ -3,6 +3,24 @@
     <h1 class="display-1 grey--text">Dashboard</h1>
 
     <v-container class="my-5">
+      <v-layout row class="mb-3">
+         <v-tooltip top>
+          <v-btn small depressed color="lightgrey" @click="sortBy('title')" slot="activator">
+            <v-icon left small>mdi-folder</v-icon>
+            <span class="caption text-lowercase">By project name</span>
+          </v-btn>
+          <span>Sort by project name</span>
+        </v-tooltip>
+
+        <v-tooltip top>
+        <v-btn small depressed color="lightgrey" @click="sortBy('person')" slot="activator">
+          <v-icon left small>mdi-account</v-icon>
+          <span class="caption text-lowercase">By person</span>
+        </v-btn>
+        <span>Sort by person</span>
+        </v-tooltip>
+      </v-layout>
+
       <v-card flat v-for="project in Projects" :key="project.title">
         <v-layout row wrap :class="`pa-3 project ${project.status}`">
           <v-flex xs12 md6>
@@ -41,7 +59,7 @@ export default {
       Projects: [
         {
           title: "Design a new website",
-          person: "Onyx",
+          person: "Tom",
           due: "1st Jan 2019",
           status: "ongoing",
           content:
@@ -73,6 +91,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    sortBy(prop) {
+      this.Projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
+    }
   }
 };
 </script>

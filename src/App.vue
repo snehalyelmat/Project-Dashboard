@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="grey lighten-2">
     <Navbar />
     <v-content class="mx-4 mt-5 mb-4">
       <router-view></router-view>
