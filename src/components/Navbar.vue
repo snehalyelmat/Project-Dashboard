@@ -1,5 +1,10 @@
 <template>
   <nav>
+    <v-snackbar v-model="snackbar" top color="teal accent-3">
+      <span>Awesome! You've added a new project!</span>
+      <v-btn depressed class="teal accent-3 white--text" @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
+
     <v-app-bar flat app class="grey lighten-3">
       <v-app-bar-nav-icon
         class="grey--text"
@@ -40,7 +45,12 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer temporary app v-model="drawer" class="deep-purple accent-2">
+    <v-navigation-drawer
+      temporary
+      app
+      v-model="drawer"
+      class="deep-purple accent-2"
+    >
       <v-layout column align-center>
         <v-flex class="mt-5">
           <v-avatar size="100">
@@ -53,7 +63,7 @@
 
         <!-- popup -->
         <v-flex class="mt-5 mb-3">
-          <Popup />
+          <Popup @projectAdded="snackbar = true"/>
         </v-flex>
       </v-layout>
 
@@ -87,13 +97,15 @@ export default {
   data() {
     return {
       drawer: false,
+      snackbar: false,
       links: [
         { icon: "mdi-view-dashboard", text: "Dashboard", route: "/" },
         { icon: "mdi-folder-open", text: "My Projects", route: "/projects" },
         { icon: "mdi-account-multiple", text: "Team", route: "/team" }
       ]
     };
-  }
+  },
+  methods: {}
 };
 </script>
 

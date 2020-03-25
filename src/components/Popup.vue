@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="600px">
+  <v-dialog max-width="600px" v-model="dialog">
     <template v-slot:activator="{ on }">
       <v-btn v-on="on" depressed color="teal accent-4" class="white--text">
         <span>add new project</span>
@@ -45,7 +45,10 @@
             <v-spacer></v-spacer>
 
             <v-flex>
-              <v-btn class="teal accent-3 mx-0 mt-3" @click="submit"
+              <v-btn
+                class="teal accent-3 mx-0 mt-3"
+                @click="submit"
+                :loading="loading"
                 >add project</v-btn
               >
             </v-flex>
@@ -57,6 +60,7 @@
 </template>
 
 <script>
+import db from "@/fb.js";
 // import format from "date-fns/format";
 
 export default {
@@ -66,17 +70,35 @@ export default {
       title: "",
       content: "",
       due: null,
-      inputRules: [v => v.length >= 3 || "Minimum length is three characters"]
+      inputRules: [v => v.length >= 3 || "Minimum length is three characters"],
+      loading: false,
+      dialog: false
     };
   },
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
-        console.log(this.title, this.content);
+        this.loading = true;
+
+        const project = {
+          title: this.title,
+          content: this.content,
+          due: this.due,
+          person: "Tom",
+          status: "ongoing"
+        };
+
+        db.collection("projects")
+          .add(project)
+          .then(() => {
+            this.loading = false;
+            this.dialog = false;
+            this.$emit('projectAdded')
+          });
       }
     },
     resetForm() {
-        this.$refs.form.reset();
+      this.$refs.form.reset();
     }
   },
   computed: {
